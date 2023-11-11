@@ -77,3 +77,41 @@ justify-content: space-between;
 #delete-all{
     background-color: var(--color-error);
 }
+table{
+    width: 100%;
+}
+thead{
+    background-color: var(--color-background);
+}
+thead th{
+   padding:10px;
+    background-color: rgb(197, 194, 194);
+
+}
+thead th:first-child{
+    overflow: auto;
+    border-top-left-radius: 10px;
+}
+thead th:last-child{
+    border-top-right-radius: 10px;
+}
+
+tbody td{
+    width: 25%;
+    text-align: center;
+    background-color: var(--color-task);
+    padding: 5px 10px;
+}
+tbody td button{
+
+    padding: 4px 8px;
+    margin:2px 5px;
+}
+
+tbody td button:nth-child(2){
+    background-color: var(--color-success);
+    width: 50px;
+}
+tbody td button:nth-child(3){
+    background-color: var(--color-error);
+}
