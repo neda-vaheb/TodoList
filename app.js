@@ -94,7 +94,49 @@ const addButtonHandler = ()=>{
     }
  
 };
+const deleteHandeler =(id)=>{
+    const newTodo = todos.filter((todo)=> todo.id !== id);
+    todos = newTodo;
+    showTodos();
+    saveLocalStarge();
+    showAlert("the task is deleted successfully!" , "success");
+    
+    };
+    const editHandler = (id)=>{
+        const editTodo= todos.find((todo)=> todo.id === id);
+         taskInput.value = editTodo.task;
+         dateInput.value = editTodo.date;
+         editButton.style.display = "inline-block";
+         addButton.style.display = "none";
+         editButton.dataset.id = id;
+      };
+      
+      const editButtonHandler=(event)=>{
+        const id = event.target.dataset.id;
+        const editTodo = todos.find((todo)=>todo.id === id);
+        editTodo.task = taskInput.value;
+        editTodo.date = dateInput.value;
+        taskInput.value ="";
+        dateInput.value = "";
+        saveLocalStarge();
+        showTodos();
+        showAlert("edit task done successfully" , "success")
+      
+      
+         editButton.style.display = "none";
+         addButton.style.display = "inline-block";
+      };
+      const doneHandler = (id)=>{
+        const doneTodo = todos.find((todo)=> todo.id === id);
+        doneTodo.complete = !doneTodo.complete;
+        saveLocalStarge();
+        showTodos();
+        showAlert("Todos status change successfully" , "success")
+        
+        }
+    
 
 addButton.addEventListener("click" , addButtonHandler);
 deleteAll.addEventListener("click" , deleteAllHandler);
+editButton.addEventListener("click" ,editButtonHandler );
 
