@@ -4,6 +4,9 @@ const addButton = document.getElementById("add");
 const alertMassage = document.querySelector("#alert-message");
 const todosBody = document.querySelector("tbody");
 const deleteAll = document.querySelector("#delete-all");
+const filterButton = document.querySelectorAll(".filter-button");
+const editButton = document.querySelector("#edit");
+
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
  console.log(todos);
@@ -133,10 +136,33 @@ const deleteHandeler =(id)=>{
         showTodos();
         showAlert("Todos status change successfully" , "success")
         
+        };
+        const filterButtonHandler = (event)=>{
+            let filelterTodos = null;
+        const filter = event.target.dataset.filter;
+        
+        switch(filter){
+            case "pending":
+           filelterTodos =  todos.filter((todo)=> todo.complete === false );
+            break;
+            case "completed":
+                filelterTodos =  todos.filter((todo)=> todo.complete === true );
+                 break;
+            default:
+                filelterTodos = todos;
+            break;
+        
         }
+        showTodos(filelterTodos);
+        };    
     
-
+ window.addEventListener("load" , ()=>{
+            showTodos();
+        });
 addButton.addEventListener("click" , addButtonHandler);
 deleteAll.addEventListener("click" , deleteAllHandler);
 editButton.addEventListener("click" ,editButtonHandler );
+filterButton.forEach((button)=>{
+    button.addEventListener("click",filterButtonHandler);
+});
 
